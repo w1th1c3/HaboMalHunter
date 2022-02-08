@@ -1,0 +1,25 @@
+docker搭建新增：
+
+apt源
+Uversion="xenial" 
+echo -en "deb http://mirrors.aliyun.com/ubuntu/ ${Uversion} main restricted universe multiverse \n\
+deb-src http://mirrors.aliyun.com/ubuntu/ ${Uversion} main restricted universe multiverse \n\
+deb http://mirrors.aliyun.com/ubuntu/ ${Uversion}-security main restricted universe multiverse \n\
+deb-src http://mirrors.aliyun.com/ubuntu/ ${Uversion}-security main restricted universe multiverse \n\
+deb http://mirrors.aliyun.com/ubuntu/ ${Uversion}-updates main restricted universe multiverse \n\
+deb-src http://mirrors.aliyun.com/ubuntu/ ${Uversion}-updates main restricted universe multiverse \n\
+deb http://mirrors.aliyun.com/ubuntu/ ${Uversion}-backports main restricted universe multiverse \n\
+deb-src http://mirrors.aliyun.com/ubuntu/ ${Uversion}-backports main restricted universe multiverse \n\
+deb http://mirrors.aliyun.com/ubuntu/ ${Uversion}-proposed main restricted universe multiverse \n\
+deb-src http://mirrors.aliyun.com/ubuntu/ ${Uversion}-proposed main restricted universe multiverse \n" >/etc/apt/sources.list
+
+apt-get install -y nano binutils apt-utils net-tools tcpdump ltrace psmisc
+
+pip源
+
+pip install --upgrade pip
+pip install yara
+
+ln -s /usr/local/lib/python2.7/dist-packages/usr/lib/libyara.so /usr/lib/libyara.so
+sed -i 's/\tinit_localtime()/\t#init_localtime()/g' ./AnalyzeControl.py
+设置正确的时间
