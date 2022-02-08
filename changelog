@@ -24,12 +24,20 @@ ln -s /usr/local/lib/python2.7/dist-packages/usr/lib/libyara.so /usr/lib/libyara
 sed -i 's/\tinit_localtime()/\t#init_localtime()/g' ./AnalyzeControl.py
 设置正确的时间
 
-File "AnalyzeControl.py", line 113, in init_cfg
-    for k, v in args_dict.iteritems():
-AttributeError: 'dict' object has no attribute 'iteritems'
-改成args_dict.items()
 
 sysdig问题
 https://www.cnblogs.com/dpwindy/p/9088292.html
 https://segmentfault.com/a/1190000015857790
 curl https://s3.amazonaws.com/download.draios.com/stable/install-sysdig -o install-sysdig
+
+
+python3版本存在很多问题
+File "AnalyzeControl.py", line 113, in init_cfg
+    for k, v in args_dict.iteritems():
+AttributeError: 'dict' object has no attribute 'iteritems'
+改成args_dict.items()
+改好后又有这种报错
+File "AnalyzeControl.py", line 249, in get_filetype
+    parts = output.split(":")
+TypeError: a bytes-like object is required, not 'str'
+这个源项目的作者想必是没完全适配好python3的，还是不弄了，太垃圾了，还是参考腾讯官方开源的吧
