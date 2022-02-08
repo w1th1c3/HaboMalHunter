@@ -41,3 +41,22 @@ File "AnalyzeControl.py", line 249, in get_filetype
     parts = output.split(":")
 TypeError: a bytes-like object is required, not 'str'
 这个源项目的作者想必是没完全适配好python3的，还是不弄了，太垃圾了，还是参考腾讯官方开源的吧
+
+
+
+
+apt-get install -y nano binutils apt-utils net-tools tcpdump ltrace psmisc
+
+
+适配u1604
+先安装好curl，不然无法安装pyh
+
+pip2 install yara
+
+ln -s /usr/local/lib/python2.7/dist-packages/usr/lib/libyara.so /usr/lib/libyara.so
+
+
+sudo docker run -it --rm --privileged=true --volume=/var/run/docker.sock:/host/var/run/docker.sock --volume=/dev:/host/dev --volume=/proc:/host/proc:ro --volume=/boot:/host/boot:ro --volume=/lib/modules:/host/lib/modules:ro --volume=/usr:/host/usr:ro ubuntu:16.04 bash
+
+
+docker先安装 sysdig，在去适配哈勃
