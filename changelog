@@ -23,3 +23,8 @@ pip install yara
 ln -s /usr/local/lib/python2.7/dist-packages/usr/lib/libyara.so /usr/lib/libyara.so
 sed -i 's/\tinit_localtime()/\t#init_localtime()/g' ./AnalyzeControl.py
 设置正确的时间
+
+sysdig问题
+https://www.cnblogs.com/dpwindy/p/9088292.html
+https://segmentfault.com/a/1190000015857790
+curl https://s3.amazonaws.com/download.draios.com/stable/install-sysdig -o install-sysdig
