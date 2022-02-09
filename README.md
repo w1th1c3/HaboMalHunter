@@ -6,15 +6,11 @@
 
 （理论上Ubuntu其他高版本也能用，不过你需要具体看看./build.sh里的命令，可能需要改改）
 
-下载项目：
-
-git clone https://github.com/w1th1c3/HaboMalHunter
-
-务必把该HaboMalHunter文件夹放到/opt目录下面，才能进行安装搭建
+下载项目时务必把该HaboMalHunter文件夹放到/opt目录下面，才能进行安装搭建
 
 原因是conf.ini文件硬编码写死了这个路径
 
-然后
+git clone https://github.com/w1th1c3/HaboMalHunter /opt/HaboMalHunter
 
 cd /opt/HaboMalHunter
 
