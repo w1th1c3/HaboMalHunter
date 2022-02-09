@@ -7,29 +7,6 @@ if [ "$(id -u)" != "0" ]; then
 	echo "Please run as root"
 fi
 
-function get_char()
-{
-  SAVEDSTTY=`stty -g`
-  stty -echo
-  stty cbreak
-  dd if=/dev/tty bs=1 count=1 2> /dev/null
-  stty -raw
-  stty echo
-  stty $SAVEDSTTY
-}
-
-enable_pause=1
-
-function pause()
-{
-  if [ "x$1" != "x" ]; then
-    echo $1
-  fi
-  if [ $enable_pause -eq 1 ]; then
-    echo "Press any key to continue!"
-    char=`get_char`
-  fi
-}
 
 Uversion="xenial" 
 echo -en "deb http://mirrors.aliyun.com/ubuntu/ ${Uversion} main restricted universe multiverse \n\
@@ -50,7 +27,6 @@ apt-get install -y nano binutils apt-utils net-tools tcpdump ltrace psmisc curl
 pip install yara
 ln -s /usr/local/lib/python2.7/dist-packages/usr/lib/libyara.so /usr/lib/libyara.so
 
-pause "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
 curl -s https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public | apt-key add -
 curl -s -o /etc/apt/sources.list.d/draios.list http://download.draios.com/stable/deb/draios.list
@@ -63,13 +39,11 @@ apt-get install -y libc6-dev-i386 exiftool ssdeep upx clamav python python-pip p
 apt-get -y autoremove
 apt-get clean all
 
-pause "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
 #modify /etc/wireshark/init.lua
 sed -i 's/run_user_scripts_when_superuser = false/run_user_scripts_when_superuser = true/' /etc/wireshark/init.lua
 sed -i '38irunning_superuser = false' /etc/wireshark/init.lua
 
-pause "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
 #build profile for volatility 
 cd /usr/src/volatility-tools/linux
@@ -83,11 +57,9 @@ cp /usr/src/volatility-tools/linux/module.dwarf $VOL_PROFILE_DIR
 cp /boot/System.map-`uname -r` $VOL_PROFILE_DIR
 profile_file='/usr/lib/python2.7/dist-packages/volatility/plugins/overlays/linux/Ubuntu1604.zip'
 rm -rf $profile_file
-zip /usr/lib/python2.7/dist-packages/volatility/plugins/overlays/linux/Ubuntu1404.zip $VOL_PROFILE_DIR/*
-vol.py --info | grep Linux
+zip /usr/lib/python2.7/dist-packages/volatility/plugins/overlays/linux/Ubuntu1604.zip $VOL_PROFILE_DIR/*
+volatility --info | grep Linux
 echo "get the profile!"
-
-pause "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
 
 # build lime
@@ -106,7 +78,6 @@ cp *.ko $dest_path/'lime.ko'
 cd ..
 cd -
 
-pause "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
 #install pyh.py
 download_url='https://codeload.github.com/ilovegit1998/pyh/zip/master'
@@ -119,5 +90,7 @@ curl -o$dest_file -L $download_url
 unzip -o -qq $dest_file 
 cd $unzip_dir
 /usr/bin/python setup.py install
+cd ..
+cd -
 
-echo "all done!"
+echo "all done! try: python AnalyzeControl.py -v -l ./test/bin/https.64.elf"
