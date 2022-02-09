@@ -1,3 +1,7 @@
+务必把该HaboMalHunter文件夹放到/opt目录下面，才能进行安装搭建
+原因是conf.ini文件硬编码写死了这个路径
+
+
 # HaboMalHunter: Habo Linux Malware Analysis System
 
 - [二开自研](./auxiliary)
