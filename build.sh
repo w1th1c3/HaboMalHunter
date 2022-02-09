@@ -69,8 +69,9 @@ dest_path='/usr/share/LiME'
 dest_file='LiME.zip'
 unzip_dir='LiME-1.7.5'
 mkdir -p $dest_path
+mv $dest_file $dest_path
 cd $dest_path
-curl -o$dest_file -L $download_url
+#curl -o$dest_file -L $download_url
 unzip -o -qq $dest_file 
 cd $unzip_dir/src 
 make
@@ -86,8 +87,9 @@ dest_path='/usr/share/pyh'
 dest_file='pyh.zip'
 unzip_dir='pyh-master'
 mkdir -p $dest_path
+mv $dest_file $dest_path
 cd $dest_path
-curl -o$dest_file -L $download_url
+#curl -o$dest_file -L $download_url
 unzip -o -qq $dest_file 
 cd $unzip_dir
 /usr/bin/python setup.py install
