@@ -613,7 +613,7 @@ def init_localtime():
 	os.symlink(f_src,f_localtime)
 
 def main(argc, argv):
-	init_localtime()
+	#init_localtime()
 	cfg = init_arguments(argv)
 	init_log(cfg)
 	log.info("version: %s",cfg.version)
