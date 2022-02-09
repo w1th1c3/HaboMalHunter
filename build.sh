@@ -31,7 +31,8 @@ ln -s /usr/local/lib/python2.7/dist-packages/usr/lib/libyara.so /usr/lib/libyara
 curl -s https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public | apt-key add -
 curl -s -o /etc/apt/sources.list.d/draios.list http://download.draios.com/stable/deb/draios.list
 apt-get update
-apt-get install -y build-essential sysdig tshark ssldump libcurl4-openssl-dev auditd
+apt-get install -y sysdig --allow-unauthenticated
+apt-get install -y build-essential tshark ssldump libcurl4-openssl-dev auditd
 apt-get install -y dwarfdump linux-tools-common linux-headers-generic p7zip-rar zip volatility
 apt-get install -y linux-tools-`uname -r`
 apt-get install -y libc6-dev-i386 exiftool ssdeep upx clamav python python-pip python-dev python-software-properties
